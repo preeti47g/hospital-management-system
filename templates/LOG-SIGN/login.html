@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard">
+    <div class="hello">
+        <h3>User Login</h3>
+    </div>
+
+    <section id="section_user" class="section_inp">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+
+            <label for="email">{{ form.email.label }}</label>
+            {{ form.email(id="email-field") }}
+            {% for error in form.email.errors %}
+                <div style="color: red;">{{ error }}</div>
+            {% endfor %}
+
+            <label for="password">{{ form.password.label }}</label>
+            <div style="position: relative;">
+                {{ form.password(id="password-field") }}
+                <button type="button" id="togglePassword" style="
+                    position: absolute; 
+                    right: 10px; 
+                    top: 10px; 
+                    background: none; 
+                    border: none; 
+                    cursor: pointer;">
+                    👁️
+                </button>
+            </div>
+            {% for error in form.password.errors %}
+                <div style="color: red;">{{ error }}</div>
+            {% endfor %}
+
+            <button type="submit" class="submit_button">{{ form.submit.label }}</button>
+        </form>
+
+        <button id="forget_button" class="forget_button">Forgot Password</button>
+        <button id="register_button" class="register_button">Don't have an account? Click Here</button>
+    </section>
+</div>
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password-field');
+
+    togglePassword.addEventListener('click', () => {
+        const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordField.setAttribute('type', type);
+        togglePassword.textContent = type === 'password' ? '👁️' : '🙈';
+    });
+
+    const registerButton = document.getElementById('register_button');
+    registerButton.addEventListener('click', () => {
+        window.location.href = "{{ url_for('sign') }}";  // Redirect to signup
+    });
+
+    const forgetButton = document.getElementById('forget_button');
+    forgetButton.addEventListener('click', () => {
+        window.location.href = "{{ url_for('forget') }}";  // Redirect to forgot password
+    });
+</script>
+{% endblock content %}

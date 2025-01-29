@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard">
+    <div class="hello">
+        <h3>User signup</h3>
+    </div>
+
+    <section id="section_user" class="section_inp">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+
+            <label for="Name">{{ form.name.label }}</label>
+            {{ form.name() }}
+            {% if form.name.errors %}
+            {% for error in form.name.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <label for="email">{{ form.email.label }}</label>
+            {{ form.email() }}
+            {% if form.email.errors %}
+            {% for error in form.email.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <label for="gender">{{ form.gender.label }}</label>
+            {{ form.gender() }}
+            {% if form.gender.errors %}
+            {% for error in form.gender.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <label for="age">{{ form.age.label }}</label>
+            {{ form.age() }}
+            {% if form.age.errors %}
+            {% for error in form.age.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <label for="password">{{ form.password.label }}</label>
+            {{ form.password() }}
+            {% if form.password.errors %}
+            {% for error in form.password.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <label for="confirm_password">{{ form.confirm_password.label }}</label>
+            {{ form.confirm_password() }}
+            {% if form.confirm_password.errors %}
+            {% for error in form.confirm_password.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+            {% endif %}
+
+            <button type="submit" class="submit_button">Register</button>
+        </form>
+
+        <button id="login_button" class="forget_button">Already registered? Login</button>
+    </section>
+</div>
+
+
+{% endblock content %}

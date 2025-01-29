@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- author: Ayusi Dey -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile</title>
+    <style>
+        .logout-button{
+            background-color: #193070;
+            color: white;
+            padding: 10px 20px;
+            border: black;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: right;
+        }
+        .feedback-button{
+            background-color: #1aad06;
+            color: white;
+            padding: 10px 20px;
+            border: black;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: right;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            margin-left: 1in;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-container {
+            margin-left: 1in;
+            margin-right: 1in;
+            margin-top: 0.2in;
+            margin-bottom: 0.2in;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .feedback{
+            margin-left: 1in;
+            margin-right: 1in;
+            margin-top: 0.5in;
+            margin-bottom: 0.5in;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ABC Hospital</h1>
+        <button id="logout" class="logout-button">Logout</button>
+
+    </header>
+    <div class="profile-container">
+        <p>Doctor's profile</p>
+        <div class="profile-image">
+            <img src="https://via.placeholder.com/60" alt="Patient Photo">
+        </div>
+        <div class="profile-details">
+            <p><strong>Name:</strong> {{ doctor.name }}</p>
+            <p><strong>Email:</strong> {{ doctor.email }}</p>
+            <p><strong>Phone:</strong> {{ doctor.phone }}</p>
+            <p><strong>Specialization:</strong> {{ doctor.specialist }}</p>
+        </div>
+        
+    </div>
+    <section class="feedback">
+        <h2>Feedback</h2>
+        <form action="submit_feedback.php" method="post">
+          <label for="feedback">Feedback:</label>
+          <textarea id="feedback" name="feedback" rows="5" required></textarea>
+      
+          <button type="submit" class="feedback-button">Submit Feedback</button>
+        </form>
+      </section>
+
+    <script >
+        
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <!-- author: Soumodip Pal -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor's Dashboard - Hospital Management System</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 10px 10px;
+            position: relative;
+        }
+
+        header img {
+            height: 55px;
+            width: 75px;
+            mix-blend-mode: color-burn;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        header .page {
+            position: absolute;
+            top: 25px;
+            right: 50px;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+
+        .dashboard {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hello {
+            background-color: darkseagreen;
+            margin: 0;
+            padding: 10px;
+            border-radius: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .dashboard h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .intro-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .intro-card {
+            background-color: #e0f7ea;
+            border: 1px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 30%;
+            max-width: 30%;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .intro-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-card img {
+            width: 75px;
+            height: 75px;
+            margin-bottom: 10px;
+        }
+
+        .intro-card h3 {
+            color: #4CAF50;
+        }
+
+        .intro-card p {
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .intro-card {
+                max-width: 100%;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+        }
+        .logout-button{
+            background-color: #193070;
+            color: white;
+            padding: 10px 20px;
+            border: black;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <img src="doc.jpg" alt="Doctor Icon">
+        <p class="page">Doctor's Dashboard</p>
+        <h1>ABC Hospital</h1>
+        <button id="logout" class="logout-button">Logout</button>
+
+    </header>
+
+    <section id="home" class="dashboard">
+        <div class="hello">
+            <p>Welcome, Dr. Jane Doe</p>
+        </div>
+
+        <h2>Welcome to Your Dashboard</h2>
+        <p>Here you can manage your appointments, view patient records, generate reports, and more.</p>
+
+        <div class="intro-section">
+            <a class="intro-card" href="{{ url_for('doc_profile', doctor_id=session['user_id']) }}">
+                <img src="profile.jpg" class="profile-icon" alt="Profile">
+                <h3>Profile</h3>
+                <p>Check your details</p>
+            </a>
+            <a class="intro-card" href="{{ url_for('doctorsPatients', doctor_id = session['user_id']) }}">
+                <img src="calender.jpg" alt="Appointments" class="profile-icon">
+                <h3>Appointments</h3>
+                <p>Manage your appointments</p>
+            </a>
+            <a class="intro-card" href="{{ url_for('allPatients') }}">
+                <img src="bed.jpg" alt="Patients" class="profile-icon">
+                <h3>Total Patients</h3>
+                <p>View all your patients</p>
+            </a>
+            <a class="intro-card" href="generatingReports.html">
+                <img src="rep.jpg" alt="Reports" class="profile-icon">
+                <h3>Generate Report</h3>
+                <p>Create and download reports</p>
+            </a>
+            <a class="intro-card" href="contactAdmin.html">
+                <img src="contact.jpg" alt="Contact Admin" class="profile-icon">
+                <h3>Contact Admin</h3>
+                <p>Get in touch with administration</p>
+            </a>
+        </div>
+    </section>
+    <script>
+        const logoutButton = document.getElementById('logout');
+    
+            // Add an event listener to the logout button
+            logoutButton.addEventListener('click', () => {
+            // Redirect to the home page
+            window.location.href = 'homepage.html';
+            });
+            </script>
+    <footer>
+        <p>&copy; 2024 Hospital Management System. All rights reserved.</p>
+        <p>1/2/3 XYZ Road</p>
+        <p>+91 1234567890</p>
+    </footer>
+
+</body>
+
+</html>
+

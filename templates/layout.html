@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <style>
+        /* Styles copied from your original template */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard {
+            padding: 20px;
+            max-width: 600px;
+            margin: 100px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .hello {
+            background-color: darkseagreen;
+            padding: 10px;
+            border-radius: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .section_inp {
+            padding: 30px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #134108;
+            border-radius: 5px;
+        }
+        .submit_button, .forget_button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .submit_button {
+            background-color: #193170;
+            color: white;
+        }
+        .forget_button {
+            background-color: #04ac28;
+            color: white;
+        }
+        .submit_button:hover, .forget_button:hover {
+            opacity: 0.9;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ABC Hospital</h1>
+    </header>
+
+    <main>
+        {% block content %}{% endblock content %}
+    </main>
+
+    <footer>
+        Address: 1/2/3 XYZ Road <br>
+        Phone: +91 1234567890
+    </footer>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<html lang="en"><!-- author: Preetishree --><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .patient-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .patient-info img {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin: 0 0 10px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 1em;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        .logout-button {
+            background-color: #193070;
+            color: white;
+            padding: 10px 20px;
+            border: black;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .feedback-button {
+            background-color: #1aad06;
+            color: white;
+            padding: 10px 20px;
+            border: black;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: right;
+        }
+
+        .feedback {
+            margin-left: 1in;
+            margin-right: 1in;
+            margin-top: 0.5in;
+            margin-bottom: 0.5in;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="patient-info">
+            <img src="https://via.placeholder.com/60" alt="Patient Photo">
+            <h3>Harry Potter</h3>
+        </div>
+        <h1>ABC Hospital</h1>
+        <button id="logout" class="logout-button">Logout</button>
+    </div>
+
+    <div class="container" id="patientDetails-container">
+        <!-- Appointments Section -->
+        <div class="card">
+            <h2> Take Appointments</h2>
+            <h3>need appointment,<a href="{{ url_for('appointment_form') }}"> click here</a></h3>
+        </div>
+
+        <!-- Reports Section -->
+        <div class="card">
+            <h2>Reports</h2>
+            <p><strong>Last Report:</strong> Blood Test</p>
+            <p>Date: August 20, 2024</p>
+            <p>Status: Completed</p>
+            <p><strong>Next Report:</strong> MRI Scan</p>
+            <p>Date: September 15, 2024</p>
+            <button id="download-report">Download Report</button>
+        </div>
+
+        <!-- Bill Payment Section -->
+        <div class="card">
+            <h2>Bill Payment</h2>
+            <p><strong>Outstanding Balance:</strong></p>
+            <p>Total: Rs. 500/-</p>
+            <button id="pay-now">Pay Now</button>
+
+            <!-- Payment form (initially hidden) -->
+            <div id="payment-form" class="hidden">
+                <h3>Payment Details</h3>
+                <form id="paymentForm">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" required=""><br><br>
+                    <label for="card">Card Number:</label>
+                    <input type="text" id="card" name="card" required=""><br><br>
+                    <label for="exp">Expiry Date:</label>
+                    <input type="month" id="exp" name="exp" required=""><br><br>
+                    <button type="submit">Submit Payment</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Case Summary Section -->
+        <div class="card">
+            <h2>Case Summary</h2>
+            <p><strong>Primary Diagnosis:</strong> Hypertension</p>
+            <p><strong>Ongoing Treatment:</strong> Blood pressure management</p>
+            <p>Next Follow-up: October 10, 2024</p>
+            <button id="read-more">Read More</button>
+
+            <!-- Additional case summary (initially hidden) -->
+            <div id="more-info" class="hidden">
+                <p><strong>Prescriptions:</strong> Amlodipine, Lisinopril</p>
+                <p><strong>Doctor's Notes:</strong> The patient should continue the medication and monitor blood
+                    pressure daily.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <section class="feedback">
+        <h2>Feedback</h2>
+        <form action="submit_feedback.php" method="post">
+            <label for="feedback">Feedback:</label>
+            <textarea id="feedback" name="feedback" rows="5" required=""></textarea>
+
+            <button type="submit" class="feedback-button">Submit Feedback</button>
+        </form>
+    </section>
+
+    <script>
+        const logoutButton = document.getElementById('logout');
+        const payNowButton = document.getElementById('pay-now');
+        const paymentForm = document.getElementById('payment-form');
+        const readMoreButton = document.getElementById('read-more');
+        const moreInfo = document.getElementById('more-info');
+        const downloadReportButton = document.getElementById('download-report');
+
+        // Add an event listener to the logout button
+        logoutButton.addEventListener('click', () => {
+            // Redirect to the home page
+            window.location.href = 'homepage.html';
+        });
+
+        // Add event listener to Pay Now button
+        payNowButton.addEventListener('click', () => {
+            // Show the payment form
+            paymentForm.classList.remove('hidden');
+        });
+
+        // Payment form submission
+        const paymentFormElement = document.getElementById('paymentForm');
+        paymentFormElement.addEventListener('submit', (event) => {
+            event.preventDefault();
+            alert('Payment submitted successfully!');
+            paymentForm.classList.add('hidden');
+        });
+
+        // Add event listener to Read More button
+        readMoreButton.addEventListener('click', () => {
+            moreInfo.classList.toggle('hidden');
+        });
+
+        // Add event listener to Download Report button
+        downloadReportButton.addEventListener('click', () => {
+            window.open('report.pdf', '_blank');
+        });
+    </script>
+
+    <div class="footer">
+        © 2024 India Hospital. All rights reserved.
+    </div>
+
+
+
+</body></html>

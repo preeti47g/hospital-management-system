@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit or Delete Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, select {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button.delete {
+            background-color: #e74c3c;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit or Delete Admin</h2>
+        <form action="/manageAdmin" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for admin in admins %}
+                    <tr>
+                        <td>{{ admin.admin_id }}</td>
+                        <td>
+                            <input type="text" name="name_{{ admin.admin_id }}" value="{{ admin.name }}" required>
+                        </td>
+                        <td>
+                            <input type="email" name="email_{{ admin.admin_id }}" value="{{ admin.email }}" required>
+                        </td>
+                        <td>
+                            <input type="text" name="role_{{ admin.admin_id }}" value="{{ admin.role }}" required>
+                        </td>
+                        <td>
+                            <input type="tel" name="phone_{{ admin.admin_id }}" value="{{ admin.phone }}" pattern="[0-9]{10}" required>
+                        </td>
+                        <td>
+                            <select name="is_active_{{ admin.admin_id }}">
+                                <option value="1" {% if admin.is_active %}selected{% endif %}>Active</option>
+                                <option value="0" {% if not admin.is_active %}selected{% endif %}>Inactive</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" name="action" value="edit_{{ admin.admin_id }}">Edit</button>
+                            <button type="submit" name="action" value="delete_{{ admin.admin_id }}" class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

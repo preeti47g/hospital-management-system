@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Doctors</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button.delete {
+            background-color: #e74c3c;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Doctors</h2>
+        <form action="/manageDoctor" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Specialization</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doctor in doctors %}
+                    <tr>
+                        <td>{{ doctor.doctor_id }}</td>
+                        <td><input type="text" name="name_{{ doctor.doctor_id }}" value="{{ doctor.name }}" required></td>
+                        <td><input type="email" name="email_{{ doctor.doctor_id }}" value="{{ doctor.email }}" required></td>
+                        <td><input type="tel" name="phone_{{ doctor.doctor_id }}" value="{{ doctor.phone }}" pattern="[0-9]{10}" required></td>
+                        <td><input type="text" name="specialist_{{ doctor.doctor_id }}" value="{{ doctor.specialist }}" required></td>
+                        <td>
+                            <button type="submit" name="action" value="edit_{{ doctor.doctor_id }}">Edit</button>
+                            <button type="submit" name="action" value="delete_{{ doctor.doctor_id }}" class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
