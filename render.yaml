@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: hospital-management-system
+    env: python
+    region: us-east-1
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: SECRET_KEY
+        value: "007"
+      - key: SQLALCHEMY_DATABASE_URI
+        value: "sqlite:///instance/app_user.db"
